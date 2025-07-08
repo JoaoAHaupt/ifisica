@@ -26,7 +26,12 @@ export default function Title() {
 >
   Conservação de energia
 </Link>
-
+          <Link
+              href="/eletrica"
+              className="inline-block mt-6 px-6 py-2 text-white rounded-lg  hover:text-emerald-400 transition text-lg"
+          >
+              Eletrica
+          </Link>
 
       </header>
     </div>

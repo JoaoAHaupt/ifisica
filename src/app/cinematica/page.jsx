@@ -1,21 +1,78 @@
+
 "use client"
 import Image from "next/image";
 import { useState } from "react";
 import 'katex/dist/katex.min.css';
 import { BlockMath } from 'react-katex';
-import Exercice from '../../components/exercice.jsx';
-import Graphic from "@/components/graphic";
-import Title from "@/components/tittle";
+import Exercice from '@/app/components/exercice.jsx';
+import Graphic from "@/app/components/graphic";
+import Title from "@/app/components/tittle";
+
+const exercises = [
+    {
+        question: `Um drone voando na horizontal, em relação ao solo (como indicado pelo sentido da seta na figura), deixa cair um pacote de livros. A melhor descrição da trajetória realizada pelo pacote de livros, segundo um observador em repouso no solo, é dada pelo percurso descrito na:`,
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVZ7e-4hhCFJQuyvRRyn16CYvcAzJDMLRZ1A&s",
+        options: [
+            "A) trajetória 1.",
+            "B) trajetória 2.",
+            "C) trajetória 3.",
+            "D) trajetória 4.",
+            "E) trajetória 5."
+        ],
+        solution: `Resposta correta: D trajetória 4. O pacote descreve uma trajetória parabólica devido à combinação da velocidade horizontal do drone e a aceleração da gravidade vertical.`,
+    },
+    {
+        question: `Um carro parte do repouso e acelera uniformemente a 3 m/s² por 10 segundos. Qual a velocidade final e o deslocamento do carro nesse intervalo?`,
+        options: [],
+        solution: `
+1. v = v₀ + a·t = 0 + 3·10 = 30 m/s
+2. s = s₀ + v₀·t + (a·t²)/2 = 0 + 0 + (3·100)/2 = 150 m
+`,
+    },
+    {
+        question: `Um objeto é lançado verticalmente para cima com velocidade inicial de 20 m/s. Qual a altura máxima atingida pelo objeto?`,
+        options: [],
+        solution: `
+Usando a fórmula v² = v₀² - 2·g·h, com v = 0 na altura máxima:
+
+0 = (20)² - 2·9.8·h
+=> h = 400 / (2·9.8) ≈ 20.41 metros
+`,
+    },
+    {
+        question: `Qual é a aceleração de um corpo que muda sua velocidade de 10 m/s para 30 m/s em 5 segundos?`,
+        options: [
+            "A) 2 m/s²",
+            "B) 4 m/s²",
+            "C) 5 m/s²",
+            "D) 6 m/s²"
+        ],
+        solution: `
+Aceleração a = (v - v₀) / t = (30 - 10) / 5 = 20 / 5 = 4 m/s².
+Resposta correta: B) 4 m/s².
+`,
+    },
+    {
+        question: `Um objeto se move em um círculo de raio 5 m com velocidade constante de 10 m/s. Qual é a aceleração centrípeta do objeto?`,
+        options: [],
+        solution: `
+Aceleração centrípeta a_c = v² / r = (10)² / 5 = 100 / 5 = 20 m/s².
+`,
+    }
+];
+
+
 export default function Cinematica() {
   const [activeTab, setActiveTab] = useState("mru");
   const [showSolution, setShowSolution] = useState(false);
   const [velocity, setVelocity] = useState(0);
-  
+
+
   return (
   
     <div className="min-h-screen p-6 sm:p-12 bg-gradient-to-br from-white via-emerald-50 to-emerald-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-gray-100 font-sans w-full">
         <Title/>    
-      {/* Header com animação */}
+
       <header className="mb-16 text-center animate-fade-in">
         <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-700 dark:from-emerald-400 dark:to-green-500 mb-6">
           Cinemática
@@ -170,21 +227,12 @@ export default function Cinematica() {
 
           </div>
                   <section className="flex justify-center">
-          <div className="relative w-full max-w-2xl h-64 md:h-80 bg-gradient-to-r from-emerald-100 to-green-100 dark:from-gray-800 dark:to-gray-700 rounded-3xl shadow-xl overflow-hidden border border-emerald-200 dark:border-gray-700 flex items-center justify-center mb-7">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-32 h-32 rounded-full border-4 border-emerald-500 animate-spin-slow"></div>
-              <div className="absolute w-24 h-24 rounded-full bg-emerald-500/20 animate-pulse"></div>
-            </div>
-            <div className="relative z-10 text-center p-6">
-              <h3 className="text-2xl font-bold text-emerald-700 dark:text-emerald-300 mb-2">Movimento em Física</h3>
-              <p className="text-emerald-600 dark:text-emerald-200">Ilustração de conceitos cinemáticos</p>
-            </div>
-          </div>
+
         </section>
         </section>
         <Graphic/>
 
-        <Exercice/>
+        <Exercice exercises={exercises} />
 
       </main>
 
